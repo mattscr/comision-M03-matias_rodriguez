@@ -1,0 +1,9 @@
+PORT = 
+
+#HOST
+URL_DB = 
+PASSWORD_DB = 
+
+#TOKEN
+SECRET_KEY = 
+
