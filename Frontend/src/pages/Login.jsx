@@ -1,4 +1,28 @@
-const Register = () => {
+import { useForm } from "react-hook-form";
+import { useAuth } from "../context/Authcontext";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+export const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { signin, isAuth, errors: loginErrors } = useAuth();
+  //redirecciona a home
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isAuth) navigate("/");
+  }, [isAuth, navigate]);
+
+  //values almacena los datos del formulario
+  const onSubmit = handleSubmit(async (values) => {
+    console.log(values);
+    signin(values);
+  });
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-300">
       <div
@@ -17,55 +41,18 @@ const Register = () => {
   "
       >
         <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
-          Registrate
+          Login
         </div>
         <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
-          Crea tu cuenta para compartir experiencias de viajes
+          Inicia sesión para compartir experiencias de tus viajes
         </div>
+        {loginErrors.map((err, i) => (
+          <div key={i} className="bg-red-800 text-white">
+            {err}
+          </div>
+        ))}
         <div className="mt-10">
           <form action="#">
-            <div className="flex flex-col mb-5">
-              <label
-                htmlFor="username"
-                className="mb-1 text-xs tracking-wide text-gray-600"
-              >
-                Nombre:
-              </label>
-              <div className="relative">
-                <div
-                  className="
-              inline-flex
-              items-center
-              justify-center
-              absolute
-              left-0
-              top-0
-              h-full
-              w-10
-              text-gray-400
-            "
-                >
-                  <i className="fas fa-user text-gray-600" />
-                </div>
-                <input
-                  id="username"
-                  type="text"
-                  name="username"
-                  className="
-              text-sm
-              placeholder-gray-500
-              pl-10
-              pr-4
-              rounded-2xl
-              border border-gray-400
-              w-full
-              py-2
-              focus:outline-none focus:border-blue-400
-            "
-                  placeholder="Ingresa tu nombre"
-                />
-              </div>
-            </div>
             <div className="flex flex-col mb-5">
               <label
                 htmlFor="email"
@@ -90,9 +77,9 @@ const Register = () => {
                   <i className="fas fa-at text-gray-600" />
                 </div>
                 <input
+                  {...register("email", { required: true })}
                   id="email"
                   type="email"
-                  name="email"
                   className="
               text-sm
               placeholder-gray-500
@@ -105,6 +92,7 @@ const Register = () => {
               focus:outline-none focus:border-blue-400
             "
                   placeholder="ingresa tu email"
+                  autoComplete="email"
                 />
               </div>
             </div>
@@ -134,9 +122,9 @@ const Register = () => {
                   </span>
                 </div>
                 <input
+                  {...register("password", { required: true })}
                   id="password"
                   type="password"
-                  name="password"
                   className="
               text-sm
               placeholder-gray-500
@@ -154,6 +142,7 @@ const Register = () => {
             </div>
             <div className="flex w-full">
               <button
+                onClick={onSubmit}
                 type="submit"
                 className="
             flex
@@ -173,7 +162,7 @@ const Register = () => {
             ease-in
           "
               >
-                <span className="mr-2 uppercase">Crear</span>
+                <span className="mr-2 uppercase">Iniciar sesión</span>
                 <span>
                   <svg
                     className="h-6 w-6"
@@ -204,14 +193,17 @@ const Register = () => {
       text-xs text-center
     "
         >
-          <span className="ml-2">ya tiene una cuenta?</span>
+          <span className="ml-2">No tiene una cuenta?</span>
         </a>
-        <a href="#" className="text-xs ml-2 text-blue-500 font-semibold">
-          Iniciar sesión
-        </a>
+        <Link
+          to="/register"
+          className="text-xs ml-2 text-blue-500 font-semibold"
+        >
+          Registrate
+        </Link>
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Login;
