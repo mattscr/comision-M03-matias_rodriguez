@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/Authcontext.jsx";
 const Navbar = () => {
+  const { signout } = useAuth();
   return (
     <>
       <nav className="px-6 py-4 bg-white shadow">
         <div className="container flex flex-col mx-auto md:flex-row md:items-center md:justify-between">
           <div className="flex items-center justify-between">
             <div>
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="flex items-center space-x-3 rtl:space-x-reverse"
               >
                 <img
@@ -17,7 +20,7 @@ const Navbar = () => {
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                   Argentina programa 4.0
                 </span>
-              </a>
+              </Link>
             </div>
             <div>
               <button
@@ -31,24 +34,31 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex-col hidden md:flex md:flex-row md:-mx-4">
-            <a
-              href="#"
+            <Link
+              to="/"
               className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
             >
               Home
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/login"
               className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
             >
               Login
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/register"
               className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
             >
               Register
-            </a>
+            </Link>
+            <Link
+              to="/login"
+              onClick={() => signout()}
+              className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+            >
+              Cerrar sesion
+            </Link>
           </div>
         </div>
       </nav>

@@ -1,10 +1,10 @@
-import axios from "axios";
-
-const API = "http://localhost:8080/";
+import axios from "./Credentials.js";
 
 //***** Registrar usuario */
-//realiza un post a la ruta api register con los valores dentro que tiene "user"
-export const RegisterReq = (user) => axios.post(`${API}auth/register`, user);
+export const RegisterReq = (user) => axios.post(`auth/register`, user);
 
 //***** login usuario */
-export const LoginReq = (user) => axios.post(`${API}auth/login`, user);
+export const LoginReq = (user) => axios.post(`auth/login`, user);
+
+//***** verificación de token */
+export const verifyToken = () => axios.get(`auth/verifyToken`);

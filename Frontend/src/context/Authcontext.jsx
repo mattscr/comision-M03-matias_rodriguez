@@ -3,7 +3,8 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 //importamos la conexion a la api
-import { RegisterReq, LoginReq } from "../api/auth.js";
+import { RegisterReq, LoginReq, verifyToken } from "../api/auth.js";
+import Cookies from "js-cookie";
 
 export const Authcontext = createContext();
 
@@ -47,6 +48,36 @@ export const Authprovider = ({ children }) => {
     }
   };
 
+  //logout
+  const signout = () => {
+    Cookies.remove("token");
+    setIsAuth(false);
+    setUser(null);
+  };
+
+  //validacion de cookies
+  useEffect(() => {
+    async function verifyLogin() {
+      const cookies = Cookies.get();
+      if (cookies.token) {
+        try {
+          const res = await verifyToken(cookies.token);
+          console.log("verify token: ", res);
+          if (res.data) {
+            setIsAuth(true);
+            setUser(res.data);
+          } else {
+            setIsAuth(false);
+          }
+        } catch (error) {
+          setIsAuth(false);
+          setUser(null);
+        }
+      }
+    }
+    verifyLogin();
+  }, []);
+
   //reseteamos los errores
   useEffect(() => {
     //si existen errores
@@ -62,7 +93,9 @@ export const Authprovider = ({ children }) => {
   }, [errors]);
 
   return (
-    <Authcontext.Provider value={{ signup, signin, isAuth, user, errors }}>
+    <Authcontext.Provider
+      value={{ signup, signin, signout, isAuth, user, errors }}
+    >
       {children}
     </Authcontext.Provider>
   );

@@ -46,12 +46,12 @@ export const loginController = async (req, res) => {
   try {
     //verificamos si se encuentra el usuario por email
     const UserFound = await userModel.findOne({ email });
-    if (!UserFound) return res.status(400).json([error.errors[0].msg]);
+    if (!UserFound) return res.status(400).json(["Error en las credenciales"]);
+    //if (!UserFound) return res.status(400).json([error.errors[0].msg]);
 
     //verificamos si la contraseña es correcta
     const match = await bcrypt.compare(password, UserFound.password);
-    if (!match)
-      return res.status(400).json({ message: "Contraseña incorrecta" });
+    if (!match) return res.status(400).json(["Error en las credenciales"]);
 
     //generamos el token de acceso
     const token = await createAccesToken({ id: UserFound._id });
@@ -62,14 +62,14 @@ export const loginController = async (req, res) => {
       email: UserFound.email,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error al loguearse" });
+    res.status(500).json(["Error en login"]);
   }
 };
 
 export const logoutController = async (req, res) => {
   //se limpian las cookies
   res.cookie("token", "", { expires: new Date(0) });
-  return res.status(200).json({ message: "Ha cerrado exitosamente la sesión" });
+  return res.status(200).json(["Ha cerrado exitosamente la sesión"]);
 };
 
 const { secret_key } = settingDotEnv();

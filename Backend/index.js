@@ -16,7 +16,13 @@ const { port } = settingDotEnv();
 
 //MIDDLEWARE
 app.use(morgan("dev"));
-app.use(cors());
+//permitimos el acceso al nuestro cliente
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
