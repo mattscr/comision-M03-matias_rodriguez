@@ -1,5 +1,12 @@
+import { useAuth } from "../context/Authcontext";
 const Profile = () => {
-  return <div>Profile</div>;
+  const { user } = useAuth();
+  return (
+    <>
+      <h1>Perfil</h1>
+      {JSON.stringify(user)}
+    </>
+  );
 };
 
 export default Profile;

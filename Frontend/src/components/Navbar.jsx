@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/Authcontext.jsx";
 const Navbar = () => {
+  //debo traer isAuth para verificar si esta autenticado y ocultar o mostrar las rutas privadas
   const { signout } = useAuth();
   return (
     <>
@@ -39,6 +40,12 @@ const Navbar = () => {
               className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
             >
               Home
+            </Link>
+            <Link
+              to="/profile"
+              className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+            >
+              Profile
             </Link>
             <Link
               to="/login"
