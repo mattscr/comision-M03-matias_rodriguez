@@ -7,7 +7,12 @@ import jwt from "jsonwebtoken";
 export const registerController = async (req, res) => {
   //capturamos los datos del body
   const { username, email, password, avatarURL } = req.body;
+
   try {
+    //verificamos si el mail del usuario ya existe
+    const UserFound = await userModel.findOne({ email });
+    if (UserFound) return res.status(400).json(["El Email ya está en uso"]);
+
     //encriptar contraseña
     const passwordHash = await bcrypt.hash(password, 10);
 
@@ -41,8 +46,7 @@ export const loginController = async (req, res) => {
   try {
     //verificamos si se encuentra el usuario por email
     const UserFound = await userModel.findOne({ email });
-    if (!UserFound)
-      return res.status(400).json({ message: "Usuario no encontrado" });
+    if (!UserFound) return res.status(400).json([error.errors[0].msg]);
 
     //verificamos si la contraseña es correcta
     const match = await bcrypt.compare(password, UserFound.password);
@@ -58,7 +62,7 @@ export const loginController = async (req, res) => {
       email: UserFound.email,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error al loguearse", error });
+    res.status(500).json({ message: "Error al loguearse" });
   }
 };
 
@@ -73,7 +77,7 @@ const { secret_key } = settingDotEnv();
 export const verifyToken = async (req, res) => {
   const { token } = req.cookies;
 
-  console.log("asd: ", token);
+  console.log("token: ", token);
 
   if (!token) return res.status(401).json({ message: "No autorizado" });
 
@@ -89,4 +93,23 @@ export const verifyToken = async (req, res) => {
       email: userFound.email,
     });
   });
+};
+
+export const profile = async (req, res) => {
+  try {
+    const userFound = await userModel.findById(req.user.id);
+    if (!userFound)
+      return res.status(400).json({ message: "Usuario no encontrado" });
+    return res.json({
+      message: "perfil del usuario: ",
+      id: userFound._id,
+      username: userFound.username,
+      email: userFound.email,
+      avatarURL: userFound.avatarURL,
+      createdAt: userFound.createdAt,
+      updatedAt: userFound.updatedAt,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error al mostrar perfil", error });
+  }
 };

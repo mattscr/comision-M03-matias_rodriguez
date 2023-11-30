@@ -1,11 +1,22 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/Authcontext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Register = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const { signup } = useAuth();
+  const { signup, isAuth, errors: registerErrors } = useAuth();
+
+  //redirecciona a home
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isAuth) navigate("/");
+  }, [isAuth, navigate]);
 
   const onSubmit = handleSubmit(async (values) => {
     console.log(values);
@@ -35,6 +46,11 @@ export const Register = () => {
         <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
           Crea tu cuenta para compartir experiencias de viajes
         </div>
+        {registerErrors.map((err, i) => (
+          <div key={i} className="bg-red-800 text-white">
+            {err}
+          </div>
+        ))}
         <div className="mt-10">
           <form action="#">
             <div className="flex flex-col mb-5">
@@ -44,6 +60,11 @@ export const Register = () => {
               >
                 Nombre:
               </label>
+              {errors.username && (
+                <span className="text-red-400 ">
+                  El nombre de usuario es requerido
+                </span>
+              )}
               <div className="relative">
                 <div
                   className="
@@ -60,6 +81,7 @@ export const Register = () => {
                 >
                   <i className="fas fa-user text-gray-600" />
                 </div>
+
                 <input
                   {...register("username", { required: true })}
                   id="username"
@@ -87,6 +109,9 @@ export const Register = () => {
               >
                 E-Mail:
               </label>
+              {errors.email && (
+                <span className="text-red-400 ">El email es requerido</span>
+              )}
               <div className="relative">
                 <div
                   className="
@@ -130,6 +155,9 @@ export const Register = () => {
               >
                 contraseña:
               </label>
+              {errors.password && (
+                <span className="text-red-400 ">Contraseña es requerido</span>
+              )}
               <div className="relative">
                 <div
                   className="

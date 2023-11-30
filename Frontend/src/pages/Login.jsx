@@ -11,6 +11,7 @@ export const Login = () => {
   } = useForm();
 
   const { signin, isAuth, errors: loginErrors } = useAuth();
+
   //redirecciona a home
   const navigate = useNavigate();
   useEffect(() => {
@@ -60,6 +61,9 @@ export const Login = () => {
               >
                 E-Mail:
               </label>
+              {errors.email && (
+                <span className="text-red-400 ">El email es requerido</span>
+              )}
               <div className="relative">
                 <div
                   className="
@@ -103,6 +107,9 @@ export const Login = () => {
               >
                 contraseña:
               </label>
+              {errors.password && (
+                <span className="text-red-400 ">Contraseña es requerido</span>
+              )}
               <div className="relative">
                 <div
                   className="
