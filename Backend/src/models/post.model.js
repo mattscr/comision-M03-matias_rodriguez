@@ -15,11 +15,11 @@ const postSchema = new Schema({
     minlength: [5, "ingrese una descripcion valida, al menos 10 caracteres"],
     maxlength: [1000, "Limite maximo: 1000 caracteres"],
   },
-  autor: {
+  autor:[ {
     type: Schema.Types.ObjectId,
-    ref: "userModel",
+    ref: "user",
     required: [true, "El autor es requerido"],
-  },
+  }],
   comments: [
     {
       type: Schema.Types.ObjectId,
@@ -31,4 +31,5 @@ const postSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
+//export default model("post", postSchema);
 export const postModel = model("post", postSchema);

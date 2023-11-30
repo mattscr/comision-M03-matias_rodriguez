@@ -7,23 +7,25 @@ import Profile from "./pages/Profile.jsx";
 import ProtectedRoutes from "./routes/ProtectedRoutes.jsx";
 import NewPost from "./pages/NewPost.jsx";
 import Navbar from "./components/Navbar.jsx";
+import { PostProvider } from "./context/PostContext.jsx";
 
 function App() {
   return (
     <Authprovider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/post" element={<h1>post</h1>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/newpost" element={<NewPost />} />
-            <Route path="/profile" element={<Profile />} />
-          </Route>
-        </Routes>
-      </Router>
+      <PostProvider>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/newpost" element={<NewPost />} />
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+          </Routes>
+        </Router>
+      </PostProvider>
     </Authprovider>
   );
 }

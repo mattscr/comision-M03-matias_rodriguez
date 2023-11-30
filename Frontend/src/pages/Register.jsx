@@ -19,7 +19,7 @@ export const Register = () => {
   }, [isAuth, navigate]);
 
   const onSubmit = handleSubmit(async (values) => {
-    console.log(values);
+    //console.log(values);
     signup(values);
   });
 

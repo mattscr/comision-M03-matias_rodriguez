@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/Authcontext.jsx";
+import { useAuth } from "../context/Authcontext";
 const Navbar = () => {
   //debo traer isAuth para verificar si esta autenticado y ocultar o mostrar las rutas privadas
-  const { signout } = useAuth();
+  const { signout, user, isAuth } = useAuth();
+
   return (
     <>
       <nav className="px-6 py-4 bg-white shadow">
@@ -18,9 +19,7 @@ const Navbar = () => {
                   className="h-10"
                   alt="argentina programa Logo"
                 />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Argentina programa 4.0
-                </span>
+                
               </Link>
             </div>
             <div>
@@ -48,6 +47,12 @@ const Navbar = () => {
               Profile
             </Link>
             <Link
+              to="/newpost"
+              className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+            >
+              Nuevo Post
+            </Link>
+            <Link
               to="/login"
               className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
             >
@@ -66,6 +71,7 @@ const Navbar = () => {
             >
               Cerrar sesion
             </Link>
+            {isAuth ? JSON.stringify(user.username) : <p>desconocido</p>}
           </div>
         </div>
       </nav>

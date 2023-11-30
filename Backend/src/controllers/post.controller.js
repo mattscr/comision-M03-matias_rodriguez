@@ -11,12 +11,8 @@ export const createController = async (req, res) => {
 
 export const listController = async (req, res) => {
   try {
-    const allPost = await post.find({}, "-__v");
+    const allPost = await postModel.find();
     console.log(allPost);
-
-    if (allPost.length < 1)
-      return res.status(204).json({ message: "no existen post" });
-
     res.json(allPost);
   } catch (error) {
     res.status(500).json({ message: "error al mostrar post", error });

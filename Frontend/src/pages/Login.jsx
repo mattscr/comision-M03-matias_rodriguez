@@ -20,7 +20,7 @@ export const Login = () => {
 
   //values almacena los datos del formulario
   const onSubmit = handleSubmit(async (values) => {
-    console.log(values);
+    //console.log(values);
     signin(values);
   });
 
