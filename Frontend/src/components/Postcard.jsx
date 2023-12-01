@@ -1,5 +1,9 @@
 /* eslint-disable react/prop-types */
+import { usePost } from "../context/PostContext";
+import { Link } from "react-router-dom";
 const Postcard = ({ Post = [] }) => {
+
+  const {deletePost} = usePost()
   return (
     <>
       {Post.map((post, i) => (
@@ -12,7 +16,7 @@ const Postcard = ({ Post = [] }) => {
             </div>
             <div className="mt-2">
               <a
-                href="#"
+                href={post._id}
                 className="text-2xl font-bold text-gray-700 hover:underline"
               >
                 {post.title}
@@ -27,9 +31,15 @@ const Postcard = ({ Post = [] }) => {
               </p>
             </div>
             <div className="flex items-center justify-between mt-4">
-              <a href="#" className="text-blue-500 hover:underline">
-                Read more
-              </a>
+            <Link to={`/updatepost/${post._id}`}>editar</Link>
+            <button
+            onClick={() => {
+              console.log(post._id)
+              deletePost(post._id);
+            }}
+          >
+            eliminar
+          </button>
               <div>
                 <a href="#" className="flex items-center">
                   <img

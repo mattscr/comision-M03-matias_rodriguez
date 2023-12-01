@@ -8,6 +8,7 @@ import ProtectedRoutes from "./routes/ProtectedRoutes.jsx";
 import NewPost from "./pages/NewPost.jsx";
 import Navbar from "./components/Navbar.jsx";
 import { PostProvider } from "./context/PostContext.jsx";
+import UpdatePost from "./pages/UpdatePost.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/newpost" element={<NewPost />} />
+              <Route path="/updatepost/:id" element={<UpdatePost />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>

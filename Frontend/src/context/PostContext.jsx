@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from "react";
 import {
@@ -36,20 +37,41 @@ export const PostProvider = ({ children }) => {
       console.log(error);
     }
   };
+  //busqueda por id
+  const getPostById = async (id) => {
+    try {
+      const res = await getPostByIdReq(id);
+      // console.log(res);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //actualizar post
   const updatePost = async (id, post) => {
     try {
       const res = await updatePostReq(id, post);
       console.log(res)
-      //setPost(res.data)
+      setPost(res.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //Eliminar
+  const deletePost = async (id) => {
+    try {
+      const res = await deletePostReq(id);
+      // console.log(res);
+      if (res.status === 200) setPost(post.filter((post) => post._id !== id));
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <PostContext.Provider value={{ createPost, getAllPost, updatePost, post }}>
+    <PostContext.Provider value={{ createPost, getAllPost, updatePost, getPostById, deletePost, post }}>
       {children}
     </PostContext.Provider>
   );

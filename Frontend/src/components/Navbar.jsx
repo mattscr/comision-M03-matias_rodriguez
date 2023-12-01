@@ -71,7 +71,7 @@ const Navbar = () => {
             >
               Cerrar sesion
             </Link>
-            {isAuth ? JSON.stringify(user.username) : <p>desconocido</p>}
+            {isAuth ? (user.username) : <p>desconocido</p>}
           </div>
         </div>
       </nav>

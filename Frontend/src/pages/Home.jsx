@@ -10,7 +10,7 @@ const Home = () => {
     getAllPost();
   }, []);
 
-  console.log(post);
+  
   if (post.length === 0)
     return (
       <>

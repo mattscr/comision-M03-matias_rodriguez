@@ -1,20 +1,39 @@
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import { usePost } from "../context/PostContext";
-import { useAuth } from "../context/Authcontext";
+import { useEffect } from "react";
 
-const NewPost = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const user = useAuth();
-  const { createPost } = usePost();
+const UpdatePost = () => {
+  const { register, handleSubmit, setValue } = useForm();
+  const { post, updatePost, getPostById } = usePost();
 
-  //obtenemos los datos para crear el post
-  const onSubmit = handleSubmit(async (values) => {
-    console.log(values);
-    createPost(values);
+  
+
+  const params = useParams();
+  useEffect(() => {
+    // console.log(params);
+    async function loadPost() {
+      if (params.id) {
+        const post = await getPostById(params.id);
+        //el setValue del useForm
+        setValue("title", post.title);
+        setValue("description", post.description);
+        setValue("imgURL", post.imageURL);
+      }
+    }
+    loadPost();
+  }, []);
+
+  const navigate = useNavigate();
+  const onSubmit = handleSubmit((value) => {
+  
+    if (params.id) {
+      updatePost(params.id, value);
+    } else {
+        console.log(value)
+      //createPost(value);
+    }
+    navigate("/");
   });
 
   return (
@@ -34,44 +53,17 @@ const NewPost = () => {
     max-w-mxl
   "
       >
-        <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
-          Nuevo viaje
-        </div>
+        
 
         <div className="mt-10">
           <form action="#">
             <div className="flex flex-col mb-5">
-              <input
-                {...register("user", { required: true })}
-                id="user"
-                type="text"
-                className="
-              text-sm
-              placeholder-gray-500
-              pl-10
-              pr-4
-              rounded-2xl
-              border border-gray-400
-              w-full
-              py-2
-              focus:outline-none focus:border-blue-400
-            "
-                placeholder={user.id}
-                autoComplete="username"
-                value={JSON.stringify(user.id)}
-                disabled
-              />
               <label
                 htmlFor="title"
                 className="mb-1 text-xs tracking-wide text-gray-600"
               >
                 Titulo:
               </label>
-              {errors.title && (
-                <span className="text-red-400 ">
-                  El Titulo de usuario es requerido
-                </span>
-              )}
               <div className="relative">
                 <div
                   className="
@@ -103,6 +95,7 @@ const NewPost = () => {
               focus:outline-none focus:border-blue-400
             "
                   placeholder="Ingresa un titulo"
+                  {...register("title")}
                   autoComplete="title"
                 />
               </div>
@@ -145,6 +138,7 @@ const NewPost = () => {
               focus:outline-none focus:border-blue-400
             "
                   placeholder="describe tu viaje"
+                  {...register("description")}
                   autoComplete="description"
                 />
               </div>
@@ -235,4 +229,4 @@ const NewPost = () => {
   );
 };
 
-export default NewPost;
+export default UpdatePost;
