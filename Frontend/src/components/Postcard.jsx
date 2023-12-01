@@ -34,7 +34,7 @@ const Postcard = ({ Post = [] }) => {
             <Link to={`/updatepost/${post._id}`}>editar</Link>
             <button
             onClick={() => {
-              console.log(post._id)
+              //console.log(post._id)
               deletePost(post._id);
             }}
           >
