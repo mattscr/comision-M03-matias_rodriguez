@@ -2,10 +2,10 @@
 import { createContext, useContext, useState } from "react";
 import {
   getPost,
-  getPostById,
+  getPostByIdReq,
   createPostReq,
-  updatePost,
-  deletePost,
+  updatePostReq,
+  deletePostReq,
 } from "../api/post.js";
 
 const PostContext = createContext();
@@ -26,6 +26,7 @@ export const PostProvider = ({ children }) => {
     console.log(res);
   };
 
+  //listar todos los post
   const getAllPost = async () => {
     const res = await getPost();
     console.log(res);
@@ -36,8 +37,19 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  //actualizar post
+  const updatePost = async (id, post) => {
+    try {
+      const res = await updatePostReq(id, post);
+      console.log(res)
+      //setPost(res.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <PostContext.Provider value={{ createPost, getAllPost, post }}>
+    <PostContext.Provider value={{ createPost, getAllPost, updatePost, post }}>
       {children}
     </PostContext.Provider>
   );
