@@ -11,7 +11,7 @@ export const createController = async (req, res) => {
 
 export const listController = async (req, res) => {
   try {
-    const allPost = await postModel.find();
+    const allPost = await postModel.find().populate("autor");
     console.log(allPost);
     res.json(allPost);
   } catch (error) {
