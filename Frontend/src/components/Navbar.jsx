@@ -3,7 +3,7 @@ import { useAuth } from "../context/Authcontext";
 const Navbar = () => {
   //debo traer isAuth para verificar si esta autenticado y ocultar o mostrar las rutas privadas
   const { signout, user, isAuth } = useAuth();
-
+  //{isAuth ? user.username : <p>desconocido</p>}
   return (
     <>
       <nav className="px-6 py-4 bg-white shadow">
@@ -19,7 +19,6 @@ const Navbar = () => {
                   className="h-10"
                   alt="argentina programa Logo"
                 />
-                
               </Link>
             </div>
             <div>
@@ -40,38 +39,46 @@ const Navbar = () => {
             >
               Home
             </Link>
-            <Link
-              to="/profile"
-              className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
-            >
-              Profile
-            </Link>
-            <Link
-              to="/newpost"
-              className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
-            >
-              Nuevo Post
-            </Link>
-            <Link
-              to="/login"
-              className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
-            >
-              Register
-            </Link>
-            <Link
-              to="/login"
-              onClick={() => signout()}
-              className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
-            >
-              Cerrar sesion
-            </Link>
-            {isAuth ? (user.username) : <p>desconocido</p>}
+
+            {isAuth ? (
+              <>
+                <Link
+                  to="/profile"
+                  className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                >
+                  Profile
+                </Link>
+                <Link
+                  to="/newpost"
+                  className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                >
+                  Nuevo Post
+                </Link>
+                <Link
+                  to="/"
+                  onClick={() => signout()}
+                  className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                >
+                  Cerrar sesion
+                </Link>
+                {user.username}
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                >
+                  Register
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>

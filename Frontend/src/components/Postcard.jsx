@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import { usePost } from "../context/PostContext";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/Authcontext";
 const Postcard = ({ Post = [] }) => {
+  const { isAuth } = useAuth();
+  console.log(isAuth);
 
-  const {deletePost} = usePost()
+  const { deletePost } = usePost();
   return (
     <>
       {Post.map((post, i) => (
@@ -23,23 +26,30 @@ const Postcard = ({ Post = [] }) => {
               </a>
               <p className="mt-2 text-gray-600">
                 {post.description}
-                ------
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                ------ Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Tempora expedita dicta totam aspernatur doloremque. Excepturi
                 iste iusto eos enim reprehenderit nisi, accusamus delectus nihil
                 quis facere in modi ratione libero!
               </p>
             </div>
+
             <div className="flex items-center justify-between mt-4">
-            <Link to={`/updatepost/${post._id}`}>editar</Link>
-            <button
-            onClick={() => {
-              //console.log(post._id)
-              deletePost(post._id);
-            }}
-          >
-            eliminar
-          </button>
+              {isAuth ? (
+                <>
+                  <Link to={`/updatepost/${post._id}`}>editar</Link>
+                  <button
+                    onClick={() => {
+                      //console.log(post._id)
+                      deletePost(post._id);
+                    }}
+                  >
+                    eliminar
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
+
               <div>
                 <a href="#" className="flex items-center">
                   <img
@@ -48,7 +58,7 @@ const Postcard = ({ Post = [] }) => {
                     className="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
                   />
                   <h1 className="font-bold text-gray-700 hover:underline">
-                  {post.autor}
+                    {post.autor}
                   </h1>
                 </a>
               </div>
