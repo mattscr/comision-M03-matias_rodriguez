@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   //capturamos los datos del body
-  const { username, email, password, avatarURL } = req.body;
+  const { username, email, password, avatar } = req.body;
 
   try {
     //verificamos si el mail del usuario ya existe
@@ -21,7 +21,7 @@ export const registerController = async (req, res) => {
       username,
       email,
       password: passwordHash,
-      avatarURL,
+      avatar,
     });
     //guardamos el nuevo usuario
     const UserSaved = await NewUser.save();
@@ -42,7 +42,7 @@ export const registerController = async (req, res) => {
 
 export const loginController = async (req, res) => {
   //capturamos los datos del body
-  const { username, email, password, avatarURL } = req.body;
+  const { username, email, password, avatar } = req.body;
   try {
     //verificamos si se encuentra el usuario por email
     const UserFound = await userModel.findOne({ email });

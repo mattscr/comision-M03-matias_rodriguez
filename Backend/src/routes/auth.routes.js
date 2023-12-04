@@ -27,7 +27,7 @@ authRoutes.post(
   handleErrorValidations,
   loginController
 );
-authRoutes.post("/logout", logoutController);
+authRoutes.post("/logout", authRequired, logoutController);
 authRoutes.get("/verifyToken", verifyToken);
 authRoutes.get("/profile", authRequired, profile);
 

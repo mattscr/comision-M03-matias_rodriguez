@@ -1,9 +1,17 @@
 import { postModel } from "../models/post.model.js";
 
 export const createController = async (req, res) => {
+  const { title, description, imageURL } = req.body;
   try {
-    const newPost = await postModel.create(req.body);
-    res.status(201).json(newPost);
+    const newPost = new postModel({
+      title,
+      description,
+      autor: req.user.id,
+      imageURL,
+    });
+    console.log(newPost);
+    const savedPost = await newPost.save();
+    res.status(201).json(savedPost);
   } catch (error) {
     res.status(500).json({ message: "error al crear post", error });
   }

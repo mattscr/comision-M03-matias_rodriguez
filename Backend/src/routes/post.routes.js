@@ -6,6 +6,7 @@ import {
   listController,
   updateController,
 } from "../controllers/post.controller.js";
+import { authRequired } from "../middlewares/validateToken.js";
 
 const postRouter = Router();
 
@@ -14,10 +15,10 @@ postRouter.get("/", listController);
 //get by id
 postRouter.get("/:id", byIdController);
 //create
-postRouter.post("/", createController);
+postRouter.post("/", authRequired, createController);
 //update
-postRouter.put("/:id", updateController);
+postRouter.put("/:id", authRequired, updateController);
 //delete
-postRouter.delete("/:id", deleteController);
+postRouter.delete("/:id", authRequired, deleteController);
 
 export default postRouter;

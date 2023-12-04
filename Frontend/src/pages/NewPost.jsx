@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { usePost } from "../context/PostContext";
-import { useAuth } from "../context/Authcontext";
+import { useNavigate } from "react-router-dom";
 
 const NewPost = () => {
   const {
@@ -8,13 +8,14 @@ const NewPost = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const user = useAuth();
   const { createPost } = usePost();
+  const navigate = useNavigate();
 
   //obtenemos los datos para crear el post
   const onSubmit = handleSubmit(async (values) => {
     console.log(values);
     createPost(values);
+    navigate("/");
   });
 
   return (
@@ -41,26 +42,6 @@ const NewPost = () => {
         <div className="mt-10">
           <form action="#">
             <div className="flex flex-col mb-5">
-              <input
-                {...register("user", { required: true })}
-                id="user"
-                type="text"
-                className="
-              text-sm
-              placeholder-gray-500
-              pl-10
-              pr-4
-              rounded-2xl
-              border border-gray-400
-              w-full
-              py-2
-              focus:outline-none focus:border-blue-400
-            "
-                placeholder={user.id}
-                autoComplete="username"
-                value={JSON.stringify(user.id)}
-                disabled
-              />
               <label
                 htmlFor="title"
                 className="mb-1 text-xs tracking-wide text-gray-600"
@@ -151,7 +132,7 @@ const NewPost = () => {
             </div>
             <div className="flex flex-col mb-6">
               <label
-                htmlFor="imgURL"
+                htmlFor="imageURL"
                 className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
               >
                 Imagen:
@@ -172,9 +153,9 @@ const NewPost = () => {
             "
                 ></div>
                 <input
-                  {...register("imgURL", { required: true })}
-                  id="imgURL"
-                  type="imgURL"
+                  {...register("imageURL", { required: true })}
+                  id="imageURL"
+                  type="imageURL"
                   className="
               text-sm
               placeholder-gray-500

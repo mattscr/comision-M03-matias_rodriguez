@@ -30,7 +30,7 @@ export const PostProvider = ({ children }) => {
   //listar todos los post
   const getAllPost = async () => {
     const res = await getPost();
-    console.log(res);
+    //console.log(res);
     try {
       setPost(res.data);
     } catch (error) {
@@ -52,8 +52,8 @@ export const PostProvider = ({ children }) => {
   const updatePost = async (id, post) => {
     try {
       const res = await updatePostReq(id, post);
-      console.log(res)
-      setPost(res.data)
+      console.log(res);
+      setPost(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +71,16 @@ export const PostProvider = ({ children }) => {
   };
 
   return (
-    <PostContext.Provider value={{ createPost, getAllPost, updatePost, getPostById, deletePost, post }}>
+    <PostContext.Provider
+      value={{
+        createPost,
+        getAllPost,
+        updatePost,
+        getPostById,
+        deletePost,
+        post,
+      }}
+    >
       {children}
     </PostContext.Provider>
   );

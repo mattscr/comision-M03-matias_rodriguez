@@ -34,7 +34,6 @@ app.get("/", (req, res) => {
 });
 app.use("/auth", authRoutes);
 app.use("/post", postRouter);
-app.use("/users", userRouter);
 
 //si no encuentra ninguna ruta: 404 not found
 app.use((req, res) => {

@@ -18,19 +18,7 @@ const Home = () => {
     );
   return (
     <>
-      <div
-        className="bg-[url('https://www.studentuniverse.com/blog/wp-content/uploads/2014/04/Santorini-Greece.jpg')] bg-cover
-            bg-no-repeat
-            bg-center
-            before:content-['']
-            before:absolute
-            before:inset-0
-            before:block
-            before:bg-gradient-to-r
-            before:from-sky-500
-            before:to-indigo-500
-            before:opacity-75 before:z-[-5]"
-      >
+      <div className="bg-slate-400">
         <div className="px-6 py-8">
           <div className="container flex justify-between mx-auto">
             <div className="w-full lg:w-8/12">
@@ -149,14 +137,6 @@ const Home = () => {
                   Recent Post
                 </h1>
                 <div className="flex flex-col max-w-sm px-8 py-6 mx-auto bg-white rounded-lg shadow-md">
-                  <div className="flex items-center justify-center">
-                    <a
-                      href="#"
-                      className="px-2 py-1 text-sm text-green-100 bg-gray-600 rounded hover:bg-gray-500"
-                    >
-                      Laravel
-                    </a>
-                  </div>
                   <div className="mt-4">
                     <a
                       href="#"

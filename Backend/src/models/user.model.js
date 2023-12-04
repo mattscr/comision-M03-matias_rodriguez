@@ -19,7 +19,6 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: "https://i.pravatar.cc/200",
   },
 });
 
