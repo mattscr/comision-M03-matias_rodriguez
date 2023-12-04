@@ -15,13 +15,12 @@ const postSchema = new Schema({
     minlength: [5, "ingrese una descripcion valida, al menos 10 caracteres"],
     maxlength: [1000, "Limite maximo: 1000 caracteres"],
   },
-  autor: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: [true, "El autor es requerido"],
-    },
-  ],
+  autor: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: [true, "El autor es requerido"],
+  },
+
   comments: [
     {
       type: Schema.Types.ObjectId,

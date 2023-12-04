@@ -10,7 +10,6 @@ const Home = () => {
     getAllPost();
   }, []);
 
-  
   if (post.length === 0)
     return (
       <>
@@ -19,7 +18,19 @@ const Home = () => {
     );
   return (
     <>
-      <div className="overflow-x-hidden bg-gray-300">
+      <div
+        className="bg-[url('https://www.studentuniverse.com/blog/wp-content/uploads/2014/04/Santorini-Greece.jpg')] bg-cover
+            bg-no-repeat
+            bg-center
+            before:content-['']
+            before:absolute
+            before:inset-0
+            before:block
+            before:bg-gradient-to-r
+            before:from-sky-500
+            before:to-indigo-500
+            before:opacity-75 before:z-[-5]"
+      >
         <div className="px-6 py-8">
           <div className="container flex justify-between mx-auto">
             <div className="w-full lg:w-8/12">
@@ -35,7 +46,7 @@ const Home = () => {
             <div className="hidden w-4/12 -mx-8 lg:block">
               <div className="px-8">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Authors
+                  Autores
                 </h1>
                 <div className="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
                   <ul className="-mx-4">
@@ -132,63 +143,7 @@ const Home = () => {
                   </ul>
                 </div>
               </div>
-              <div className="px-8 mt-10">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Categories
-                </h1>
-                <div className="flex flex-col max-w-sm px-4 py-6 mx-auto bg-white rounded-lg shadow-md">
-                  <ul>
-                    <li>
-                      <a
-                        href="#"
-                        className="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >
-                        - AWS
-                      </a>
-                    </li>
-                    <li className="mt-2">
-                      <a
-                        href="#"
-                        className="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >
-                        - Laravel
-                      </a>
-                    </li>
-                    <li className="mt-2">
-                      <a
-                        href="#"
-                        className="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >
-                        - Vue
-                      </a>
-                    </li>
-                    <li className="mt-2">
-                      <a
-                        href="#"
-                        className="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >
-                        - Design
-                      </a>
-                    </li>
-                    <li className="flex items-center mt-2">
-                      <a
-                        href="#"
-                        className="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >
-                        - Django
-                      </a>
-                    </li>
-                    <li className="flex items-center mt-2">
-                      <a
-                        href="#"
-                        className="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >
-                        - PHP
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+
               <div className="px-8 mt-10">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
                   Recent Post
