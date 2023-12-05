@@ -19,7 +19,10 @@ export const createController = async (req, res) => {
 
 export const listController = async (req, res) => {
   try {
-    const allPost = await postModel.find({}, "-__v").populate("autor");
+    const allPost = await postModel
+      .find({}, "-__v")
+      .populate("autor")
+      .populate("comments");
     console.log(allPost);
     res.json(allPost);
   } catch (error) {
@@ -32,13 +35,15 @@ export const byIdController = async (req, res) => {
   const { id } = req.params;
   try {
     //nos devueve el post que coincide con la id y la guardamos en una constante
-    const postId = await postModel.findById(id);
-    if (!postId) return res.status(404).json({ message: "post no encontrado" });
+    const postId = await postModel
+      .findById(id)
+      .populate("autor")
+      .populate("comments");
+    if (!postId) return res.status(404).json(["post no encontrado"]);
     //mostramos el post obtenido
     res.json(postId);
   } catch (error) {
-    //si falla muestra el error
-    res.status(500).json({ message: "error al obtener post", error });
+    res.status(500).json(["error al obtener post"]);
   }
 };
 
