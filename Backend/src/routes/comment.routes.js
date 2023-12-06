@@ -1,13 +1,18 @@
 import { Router } from "express";
 import { authRequired } from "../middlewares/validateToken.js";
-import { createComment } from "../controllers/comment.controller.js";
+import {
+  listController,
+  createController,
+  deleteController,
+} from "../controllers/comment.controller.js";
 
 const commentRouter = Router();
 
-commentRouter.post("/:postid", authRequired, createComment);
+//commentRouter.get("/", authRequired, listController);
+commentRouter.get("/:postid", authRequired, listController);
 
-commentRouter.delete("/:id", authRequired);
+commentRouter.post("/:postid", authRequired, createController);
 
-commentRouter.put("/:id", authRequired);
+commentRouter.delete("/:postid/:idcomment", authRequired, deleteController);
 
 export default commentRouter;
