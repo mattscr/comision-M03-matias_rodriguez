@@ -66,3 +66,24 @@ export const deleteController = async (req, res) => {
     console.error("Error al eliminar comentarios:", error.message);
   }
 };
+
+export const updateController = async (req, res) => {
+  const { postid, idcomment } = req.params;
+  // console.log(
+  //   "idPost: ",
+  //   postid,
+  //   "idCom: ",
+  //   idcomment,
+  //   "iduser: ",
+  //   req.user.id
+  // );
+  try {
+    console.log(req.body);
+    const updateComment = await commentModel.findByIdAndUpdate(
+      idcomment,
+      req.body,
+      { new: true }
+    );
+    res.status(200).json(updateComment);
+  } catch (error) {}
+};

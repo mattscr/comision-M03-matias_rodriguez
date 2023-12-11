@@ -9,6 +9,7 @@ import Profile from "../pages/Profile";
 import NotFound from "../pages/NotFound";
 import LayoutPublic from "../Layout/LayoutPublic";
 import LayoutPrivate from "../Layout/LayoutPrivate";
+import Post from "../pages/Post";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         element: <LayoutPrivate />,
         children: [
+          {
+            path: "/post/:id",
+            element: <Post />,
+          },
           {
             path: "/newpost",
             element: <NewPost />,

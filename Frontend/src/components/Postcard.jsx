@@ -17,12 +17,12 @@ const Postcard = ({ Post = [] }) => {
           />
           <div className="bg-white rounded px-4 flex flex-col justify-between leading-normal">
             <div>
-              <a href="#">
+              <Link to={`/post/${post._id}`}>
                 <div className="mt-3 md:mt-0 text-gray-700 font-bold text-2xl mb-2">
                   {post.title}
                 </div>
                 <p className="text-gray-700 text-base">{post.description}</p>
-              </a>
+              </Link>
             </div>
             <a href="#" className="flex mt-3">
               <img
