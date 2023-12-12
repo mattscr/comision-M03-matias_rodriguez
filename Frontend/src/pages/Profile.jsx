@@ -16,6 +16,12 @@ const Profile = () => {
   const userpost = post.filter((post) => post.autor._id == user.id);
   console.log(user.id);
   console.log(userpost);
+  /*
+  function renderPost() {
+    if (userpost.length === 0) return <h1>no hay post</h1>;
+
+    return userpost.map((post, index) => <Postcard post={post} key={index} />);
+  }*/
   return (
     <>
       <div className="bg-slate-400">
@@ -25,7 +31,8 @@ const Profile = () => {
         <p>id: {user.id}</p>
         <img src={user.avatar} alt="avatar user" />
         <p>email: {user.email}</p>
-        <Postcard Post={userpost} />
+        {/*renderPost()*/}
+        {<Postcard Post={userpost} />}
       </div>
     </>
   );

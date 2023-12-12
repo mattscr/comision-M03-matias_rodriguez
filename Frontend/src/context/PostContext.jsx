@@ -41,7 +41,7 @@ export const PostProvider = ({ children }) => {
   const getPostById = async (id) => {
     try {
       const res = await getPostByIdReq(id);
-      // console.log(res);
+      //console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
@@ -52,7 +52,7 @@ export const PostProvider = ({ children }) => {
   const updatePost = async (id, post) => {
     try {
       const res = await updatePostReq(id, post);
-      console.log(res);
+      //console.log(res);
       setPost(res.data);
     } catch (error) {
       console.log(error);

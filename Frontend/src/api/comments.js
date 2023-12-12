@@ -1,8 +1,7 @@
 import axios from "./Credentials";
 
 //obtener comentarios de un post
-export const getCommentReq = (postid, commentid) =>
-  axios.get(`comment/${postid}/${commentid}`);
+export const getCommentReq = (postid) => axios.get(`comment/${postid}`);
 //crear comentario en un post
 export const createCommentReq = (postid) => axios.post(`comment/${postid}`);
 //eliminar comentario de un post

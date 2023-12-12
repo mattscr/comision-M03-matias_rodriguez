@@ -1,20 +1,46 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useForm } from "react-hook-form";
 import { usePost } from "../context/PostContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-const NewPost = () => {
+const PostForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
-  const { createPost } = usePost();
+
+  const { createPost, getPostById, updatePost } = usePost();
+
   const navigate = useNavigate();
+  const params = useParams();
+  useEffect(() => {
+    // console.log(params);
+    async function loadPost() {
+      if (params.id) {
+        //console.log("datos...");
+        const post = await getPostById(params.id);
+        //console.log(post);
+        //el setValue del useForm
+        setValue("title", post.title);
+        setValue("description", post.description);
+        setValue("imageURL", post.imageURL);
+      }
+    }
+    loadPost();
+  }, []);
 
   //obtenemos los datos para crear el post
   const onSubmit = handleSubmit(async (values) => {
-    console.log(values);
-    createPost(values);
+    //console.log(values);
+    if (params.id) {
+      //console.log("actualizando...");
+      updatePost(params.id, values);
+    } else {
+      createPost(values);
+    }
     navigate("/");
   });
 
@@ -36,7 +62,7 @@ const NewPost = () => {
   "
       >
         <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
-          Nuevo viaje
+          <h1>{params.id ? "Modificar viaje" : "Nuevo viaje"}</h1>
         </div>
 
         <div className="mt-10">
@@ -193,7 +219,7 @@ const NewPost = () => {
             ease-in
           "
               >
-                <span className="mr-2 uppercase">Crear</span>
+                <span className="mr-2 uppercase">Guardar</span>
                 <span>
                   <svg
                     className="h-6 w-6"
@@ -216,4 +242,4 @@ const NewPost = () => {
   );
 };
 
-export default NewPost;
+export default PostForm;

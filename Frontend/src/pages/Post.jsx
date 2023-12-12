@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useParams } from "react-router-dom";
-//import { useEffect } from "react";
+import { useEffect } from "react";
 import { usePost } from "../context/PostContext";
 import Comment from "../components/comment";
+import { useComment } from "../context/CommentContext";
 
 const Post = () => {
   const { post } = usePost();
@@ -16,7 +17,7 @@ const Post = () => {
       <>
         <>
           {/* component */}
-          <div className="bg-gray-100 h-screen flex items-center justify-center">
+          <div className="bg-gray-100 h-screen flex  justify-center">
             <div className="bg-white p-8 rounded-lg shadow-md max-w-md">
               {/* User Info with Three-Dot Menu */}
               <div className="flex items-center justify-between mb-4">
@@ -93,7 +94,7 @@ const Post = () => {
                       />
                     </g>
                   </svg>
-                  <span>{postid[0].comments.length} Comment</span>
+                  <span>{/*postid[0].comments.length*/} Comment</span>
                 </button>
               </div>
               <hr className="mt-2 mb-2" />
@@ -102,15 +103,15 @@ const Post = () => {
               <div className="mt-4">
                 {/* Comment 1 */}
 
-                <Comment comments={postid[0].comments} />
-                {/** end comment */}
+                <Comment />
+                {/** comments={postid[0].comments} end comment */}
               </div>
             </div>
           </div>
         </>
       </>
 
-      {/* comment form */}
+      {/* comment form }
       <div className="flex items-center justify-center shadow-lg mt-5 mx-8 mb-4">
         <form className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
           <div className="flex flex-wrap -mx-3 mb-6">
@@ -138,6 +139,7 @@ const Post = () => {
           </div>
         </form>
       </div>
+      { */}
     </>
   );
 };

@@ -27,11 +27,11 @@ export const CommentProvider = ({ children }) => {
   };
 
   //listar todos los cometarios del post
-  const getAllComment = async (postid, commentid) => {
+  const getAllComment = async (postid) => {
     try {
-      const res = await getCommentReq(postid, commentid);
-      console.log(res);
-      //setComment(res)
+      const res = await getCommentReq(postid);
+      //console.log(res.data);
+      setComment(res.data);
     } catch (error) {
       console.log(error);
     }
