@@ -34,7 +34,7 @@ const PostForm = () => {
 
   //obtenemos los datos para crear el post
   const onSubmit = handleSubmit(async (values) => {
-    //console.log(values);
+    console.log(values);
     if (params.id) {
       //console.log("actualizando...");
       updatePost(params.id, values);

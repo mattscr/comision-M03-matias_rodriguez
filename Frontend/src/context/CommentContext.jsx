@@ -20,9 +20,9 @@ export const CommentProvider = ({ children }) => {
   const [comment, setComment] = useState([]);
 
   //crear comment
-  const createComment = async (comment) => {
-    console.log(comment);
-    const res = await createCommentReq(comment);
+  const createComment = async (postid, comment) => {
+    console.log(postid, comment);
+    const res = await createCommentReq(postid, comment);
     console.log(res);
   };
 

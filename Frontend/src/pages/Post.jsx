@@ -1,23 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { usePost } from "../context/PostContext";
 import Comment from "../components/comment";
-import { useComment } from "../context/CommentContext";
+
+import FormComment from "../components/FormComment";
 
 const Post = () => {
   const { post } = usePost();
-  const { id } = useParams();
+  const { id: idpost } = useParams();
 
-  const postid = post.filter((post) => String(post._id) === id);
+  const postid = post.filter((post) => String(post._id) === idpost);
   //console.log(postid[0].comments.map);
-
   return (
     <>
       <>
         <>
           {/* component */}
-          <div className="bg-gray-100 h-screen flex  justify-center">
+          <div className="bg-gray-900 h-screen flex  justify-center">
             <div className="bg-white p-8 rounded-lg shadow-md max-w-md">
               {/* User Info with Three-Dot Menu */}
               <div className="flex items-center justify-between mb-4">
@@ -101,8 +100,7 @@ const Post = () => {
               <p className="text-gray-800 font-semibold">Comentarios</p>
               <hr className="mt-2 mb-2" />
               <div className="mt-4">
-                {/* Comment 1 */}
-
+                {/* Comment */}
                 <Comment />
                 {/** comments={postid[0].comments} end comment */}
               </div>
@@ -110,36 +108,8 @@ const Post = () => {
           </div>
         </>
       </>
-
-      {/* comment form }
-      <div className="flex items-center justify-center shadow-lg mt-5 mx-8 mb-4">
-        <form className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">
-              Agregar un nuevo comentario
-            </h2>
-            <div className="w-full md:w-full px-3 mb-2 mt-2">
-              <textarea
-                className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-                name="body"
-                placeholder="Escribe tu comentario"
-                required=""
-                defaultValue={""}
-              />
-            </div>
-            <div className="w-full flex items-start md:w-full px-3">
-              <div className="-mr-1">
-                <input
-                  type="submit"
-                  className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100"
-                  defaultValue="Post Comment"
-                />
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      { */}
+      {console.log(postid[0]._id)}
+      <FormComment postid={postid[0]._id} />
     </>
   );
 };

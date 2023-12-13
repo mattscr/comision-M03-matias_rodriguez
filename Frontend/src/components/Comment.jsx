@@ -12,12 +12,8 @@ const Comment = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    async function loadcomments() {
-      const comment = await getAllComment(id);
-      console.log(comment);
-    }
-    loadcomments();
-  }, []);
+    getAllComment(id);
+  }, [getAllComment]);
 
   if (comment.length === 0)
     return (
@@ -39,8 +35,7 @@ const Comment = () => {
             <p className="text-gray-800 font-semibold">{comment.autor}</p>
             <p className="text-gray-500 text-sm">{comment.description}</p>
           </div>
-          {console.log("post id :", id)}
-          {console.log("comment id", comment._id)}
+
           {isAuth ? (
             user.id == comment.autor ? (
               <>

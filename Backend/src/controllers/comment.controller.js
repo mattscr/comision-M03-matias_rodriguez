@@ -1,18 +1,20 @@
 import { commentModel } from "../models/comment.model.js";
 import { postModel } from "../models/post.model.js";
+import mongoose from "mongoose";
 
 export const createController = async (req, res) => {
-  const { autor, description } = req.body;
+  const { description } = req.body;
   const { postid } = req.params;
-  //console.log("la id del post es :", postid);
+  //const postid = new mongoose.Types.ObjectId(req.params.id);
+  console.log("la id del post es :", postid);
   try {
     // verificar existencia del post
-    const isPost = await postModel.findById(postid);
+    //const isPost = await postModel.findById(postid);
     //console.log("el post es: ", isPost);
 
     // Crear el comentario
     const newComment = new commentModel({
-      autor,
+      autor: req.user.id,
       description,
     });
 

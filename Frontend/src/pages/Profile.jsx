@@ -4,24 +4,24 @@ import Postcard from "../components/Postcard";
 import { usePost } from "../context/PostContext";
 import { useEffect } from "react";
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, isAuth } = useAuth();
   console.log(user);
 
   const { getAllPost, post } = usePost();
 
   useEffect(() => {
     getAllPost();
-  }, []);
+  }, [isAuth]);
 
   const userpost = post.filter((post) => post.autor._id == user.id);
   console.log(user.id);
   console.log(userpost);
-  /*
+
   function renderPost() {
     if (userpost.length === 0) return <h1>no hay post</h1>;
 
     return userpost.map((post, index) => <Postcard post={post} key={index} />);
-  }*/
+  }
   return (
     <>
       <div className="bg-slate-400">
@@ -31,8 +31,8 @@ const Profile = () => {
         <p>id: {user.id}</p>
         <img src={user.avatar} alt="avatar user" />
         <p>email: {user.email}</p>
-        {/*renderPost()*/}
-        {<Postcard Post={userpost} />}
+        {renderPost()}
+        {/*<Postcard Post={userpost} />*/}
       </div>
     </>
   );

@@ -3,12 +3,20 @@ import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 
 const LayoutPublic = () => {
+  const bgImage = {
+    backgroundImage: `url(https://source.unsplash.com/random?travel)`,
+  };
   //rutas publicas que se van a mostrar
   return (
     <>
-      <Navbar />
-      <Outlet />
-      <Footer />
+      <div
+        className="flex flex-col min-h-screen bg-slate-800 text-white bg-center bg-cover bg-blend-overlay bg-fixed bg-white/50"
+        style={bgImage}
+      >
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </div>
     </>
   );
 };
