@@ -7,7 +7,6 @@ import Profile from "./pages/Profile.jsx";
 import ProtectedRoutes from "./routes/ProtectedRoutes.jsx";
 import PostForm from "./pages/PostForm.jsx";
 import { PostProvider } from "./context/PostContext.jsx";
-//import UpdatePost from "./pages/UpdatePost.jsx";
 
 function App() {
   return (

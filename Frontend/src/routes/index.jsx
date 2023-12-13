@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PostForm from "../pages/PostForm";
-//import UpdatePost from "../pages/UpdatePost";
 import Profile from "../pages/Profile";
 import NotFound from "../pages/NotFound";
 import LayoutPublic from "../Layout/LayoutPublic";
