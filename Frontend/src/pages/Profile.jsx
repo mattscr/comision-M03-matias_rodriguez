@@ -24,16 +24,40 @@ const Profile = () => {
   }
   return (
     <>
-      <div className="bg-slate-400">
-        {/*fin profile*/}
-        <h1>Perfil de </h1>
-        <p>username: {user.username}</p>
-        <p>id: {user.id}</p>
-        <img src={user.avatar} alt="avatar user" />
-        <p>email: {user.email}</p>
-        {renderPost()}
-        {/*<Postcard Post={userpost} />*/}
-      </div>
+      {/*profile*/}
+      <>
+        {/* component */}
+        <div className="  h-screen  flex flex-row justify-center items-center">
+          <div className="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
+            <img
+              className="w-32 mx-auto rounded-full -mt-20 border-8 border-white"
+              src={user.avatar}
+              alt=""
+            />
+            <div className="text-center mt-2 font-bold text-3xl  text-black">
+              {user.username}
+            </div>
+            <div className="text-center mt-2  text-sm text-black">
+              @{user.username}
+            </div>
+            <div className="px-6 text-center mt-2 text-sm text-black">
+              <p>{user.email}</p>
+            </div>
+            <hr className="mt-8" />
+            <div className="flex p-4 justify-center items-center">
+              <div className="w-1/2 text-center  text-black">
+                <span className="font-bold text-black">{userpost.length}</span>{" "}
+                post
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {renderPost()}
+        </div>
+      </>
+
+      {/*end profile*/}
     </>
   );
 };

@@ -8,37 +8,35 @@ const Postcard = ({ post, index }) => {
   const { deletePost } = usePost();
   return (
     <>
-      <div key={index} className="rounded max-w-4xl lg:flex mb-10">
-        <img
-          src={post.imageURL}
-          alt="post img"
-          className="h-48 lg:w-48 flex-none bg-cover text-center overflow-hidden opacity-75"
-        />
-        <div className="bg-white rounded px-4 flex flex-col justify-between leading-normal">
-          <div>
-            <Link to={`/post/${post._id}`}>
-              <div className="mt-3 md:mt-0 text-gray-700 font-bold text-2xl mb-2">
-                {post.title}
-              </div>
-              <p className="text-gray-700 text-base">{post.description}</p>
-            </Link>
+      <div className="md:p-8 p-2 bg-white/75 rounded-md" key={index}>
+        <Link to={`/post/${post._id}`}>
+          {/*Banner image*/}
+          <img className="rounded-lg w-full" src={post.imageURL} />
+          {/*Title*/}
+          <h1 className="font-semibold text-gray-900 leading-none text-xl mt-1 capitalize truncate">
+            {post.title}
+          </h1>
+          {/*Description*/}
+          <div className="max-w-full">
+            <p className="text-base font-medium tracking-wide text-gray-600 mt-1">
+              {post.description}
+            </p>
           </div>
-          <a href="#" className="flex mt-3">
-            <img
-              src={post.autor.avatar}
-              className="h-10 w-10 rounded-full mr-2 object-cover"
-            />
-            <div>
-              <p className="font-semibold text-gray-700 text-sm capitalize">
-                {" "}
-                {post.autor.username}{" "}
-              </p>
-              <p className="text-gray-600 text-xs">
-                {" "}
-                {new Date(post.createdAt).toDateString("es-ES")}{" "}
-              </p>
-            </div>
-          </a>
+        </Link>
+        <div className="flex items-center space-x-2 mt-20">
+          {/*Author's profile photo*/}
+          <img
+            className="w-10 h-10 object-cover object-center rounded-full"
+            src={post.autor.avatar}
+            alt="random user"
+          />
+          <div>
+            {/*Author name*/}
+            <p className="text-gray-900 font-semibold">{post.autor.username}</p>
+            <p className="text-gray-500 font-semibold text-sm">
+              {new Date(post.createdAt).toDateString("es-ES")}
+            </p>
+          </div>
           {isAuth ? (
             user.id == post.autor._id ? (
               <div className="flex m-4">

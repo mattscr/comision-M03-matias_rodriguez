@@ -100,6 +100,7 @@ export const Register = () => {
               pl-10
               pr-4
               rounded-2xl
+              text-black
               border border-gray-400
               w-full
               py-2
@@ -151,6 +152,7 @@ export const Register = () => {
               rounded-2xl
               border border-gray-400
               w-full
+              text-black
               py-2
               focus:outline-none focus:border-blue-400
             "
@@ -200,6 +202,7 @@ export const Register = () => {
               rounded-2xl
               border border-gray-400
               w-full
+              text-black
               py-2
               focus:outline-none focus:border-blue-400
             "
@@ -251,6 +254,7 @@ export const Register = () => {
               rounded-2xl
               border border-gray-400
               w-full
+              text-black
               py-2
               focus:outline-none focus:border-blue-400
             "

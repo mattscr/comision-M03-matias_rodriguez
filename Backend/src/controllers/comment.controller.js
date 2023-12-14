@@ -41,9 +41,15 @@ export const listController = async (req, res) => {
   const { postid } = req.params;
   //console.log(req.params);
   try {
-    const comment = await postModel.findById(postid).populate("comments");
+    const post = await postModel.findById(postid).populate({
+      path: "comments",
+      populate: { path: "autor", select: "username avatar" },
+    });
     //console.log(comment.comments);
-    res.json(comment.comments);
+    const comment = post.comments.map((comment) => ({
+      text: comment.text,
+    }));
+    res.json(post.comments);
   } catch (error) {
     console.error("Error al listar comentarios:", error.message);
   }

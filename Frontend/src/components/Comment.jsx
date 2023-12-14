@@ -13,12 +13,12 @@ const Comment = () => {
 
   useEffect(() => {
     getAllComment(id);
-  }, [getAllComment]);
-
+  }, []);
+  console.log(comment);
   if (comment.length === 0)
     return (
       <>
-        <p>No hay comentarios</p>
+        <p className="text-black">No hay comentarios</p>
       </>
     );
 
@@ -27,28 +27,30 @@ const Comment = () => {
       {comment.map((comment, i) => (
         <div className="flex items-center space-x-2" key={i}>
           <img
-            src="https://placekitten.com/32/32"
+            src={comment.autor.avatar}
             alt="User Avatar"
             className="w-6 h-6 rounded-full"
           />
           <div>
-            <p className="text-gray-800 font-semibold">{comment.autor}</p>
+            <p className="text-gray-800 font-semibold">
+              {comment.autor.username}
+            </p>
             <p className="text-gray-500 text-sm">{comment.description}</p>
           </div>
 
           {isAuth ? (
-            user.id == comment.autor ? (
+            user.id == comment.autor._id ? (
               <>
                 <button>
-                  <i className="fas fa-pen"></i>
+                  <i className="fas fa-pen text-slate-800"></i>
                 </button>
                 <button
                   onClick={() => {
-                    //   console.log(task._id);
+                    //console.log(id, comment._id);
                     deleteComment(id, comment._id);
                   }}
                 >
-                  <i className="fas fa-trash-alt"></i>
+                  <i className="fas fa-trash-alt text-red-600"></i>
                 </button>
               </>
             ) : (

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Postcard from "../components/Postcard";
 import { usePost } from "../context/PostContext";
 import { useAuth } from "../context/Authcontext";
+//import Democard from "./democard";
 
 const Home = () => {
   const { getAllPost, post } = usePost();
@@ -20,14 +21,17 @@ const Home = () => {
   return (
     <>
       <div>
-        <div className="px-6 py-8">
-          <div className="container flex justify-between mx-auto">
-            <div className="w-full lg:w-8/12">
-              <div className="flex items-center justify-between">
-                <h1 className="text-4xl p-8 sm:p-2 sm:text-6xl md:text-4xl font-bold text-gray-800  font font-dancing ">
-                  Post
-                </h1>
-              </div>
+        <div className="px-6 py-6">
+          <div className="container justify-between mx-auto">
+            <div className="items-center justify-between">
+              <h1 className="text-4xl p-8 sm:p-2 sm:text-6xl md:text-4xl font-bold text-gray-800  font font-dancing ">
+                Post
+              </h1>
+            </div>
+            <div className="w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {/*porbando card */}
+
+              {/*fin card */}
 
               {renderPost()}
             </div>

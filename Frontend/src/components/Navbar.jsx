@@ -3,6 +3,7 @@ import { useAuth } from "../context/Authcontext";
 
 const Navbar = () => {
   const { signout, user, isAuth } = useAuth();
+  console.log(user, isAuth);
 
   return (
     <>
