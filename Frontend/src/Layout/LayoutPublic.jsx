@@ -14,6 +14,7 @@ const LayoutPublic = () => {
         style={bgImage}
       >
         <Navbar />
+        <p>publicas</p>
         <Outlet />
         <Footer />
       </div>

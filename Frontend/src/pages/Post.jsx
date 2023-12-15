@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useParams } from "react-router-dom";
 import { usePost } from "../context/PostContext";
-import Comment from "../components/Comment";
+import CommentList from "../components/CommentList";
 
 import FormComment from "../components/FormComment";
 
@@ -43,7 +43,7 @@ const Post = () => {
               <p className="text-gray-800 font-semibold">Comentarios</p>
               <hr className="mt-2 mb-2" />
               {/* Comment */}
-              <Comment />
+              <CommentList />
               {/** comments={postid[0].comments} end comment */}
               <FormComment postid={postid[0]._id} />
             </div>

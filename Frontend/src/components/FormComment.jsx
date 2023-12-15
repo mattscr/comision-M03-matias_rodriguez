@@ -12,6 +12,7 @@ const FormComment = ({ postid }) => {
     //createComment(postid, values);
     try {
       await createComment(postid, values);
+      window.location.replace("");
     } catch (error) {
       console.error("Error al enviar el comentario:", error);
     }

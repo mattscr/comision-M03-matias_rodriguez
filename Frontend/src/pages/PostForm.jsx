@@ -38,6 +38,7 @@ const PostForm = () => {
     if (params.id) {
       //console.log("actualizando...");
       updatePost(params.id, values);
+      window.location.replace("");
     } else {
       createPost(values);
     }

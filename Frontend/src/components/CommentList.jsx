@@ -5,7 +5,7 @@ import { useComment } from "../context/CommentContext";
 import { useAuth } from "../context/Authcontext";
 import { useEffect } from "react";
 
-const Comment = () => {
+const CommentList = () => {
   //console.log(comments);
   const { comment, getAllComment, deleteComment } = useComment();
   const { user, isAuth } = useAuth();
@@ -48,6 +48,7 @@ const Comment = () => {
                   onClick={() => {
                     //console.log(id, comment._id);
                     deleteComment(id, comment._id);
+                    window.location.replace("");
                   }}
                 >
                   <i className="fas fa-trash-alt text-red-600"></i>
@@ -65,4 +66,4 @@ const Comment = () => {
   );
 };
 
-export default Comment;
+export default CommentList;

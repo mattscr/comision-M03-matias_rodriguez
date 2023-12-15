@@ -2,16 +2,13 @@
 import { useEffect } from "react";
 import Postcard from "../components/Postcard";
 import { usePost } from "../context/PostContext";
-import { useAuth } from "../context/Authcontext";
-//import Democard from "./democard";
 
 const Home = () => {
   const { getAllPost, post } = usePost();
-  const { isAuth } = useAuth;
 
   useEffect(() => {
     getAllPost();
-  }, [isAuth]);
+  }, []);
 
   function renderPost() {
     if (post.length === 0) return <h1>no hay post</h1>;
@@ -29,11 +26,10 @@ const Home = () => {
               </h1>
             </div>
             <div className="w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-              {/*porbando card */}
-
-              {/*fin card */}
+              {/*post card */}
 
               {renderPost()}
+              {/*fin card */}
             </div>
           </div>
         </div>
