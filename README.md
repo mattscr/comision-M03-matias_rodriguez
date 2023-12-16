@@ -13,8 +13,7 @@ La tarea es desarrollar una plataforma web dedicada exclusivamente a las vivenci
 
 ![Tecnologias](https://skills.thijs.gg/icons?i=js,nodejs,html,css,express,tailwindcss,mongodb,react,vscode)
 
-[!IMPORTANT]  
-tener previamente instalado node js y mongodb o un cluster en mongodb atlas
+> tener previamente instalado node js y mongodb o un cluster en mongodb atlas
 
 ## 📁 Acceso al proyecto
 
