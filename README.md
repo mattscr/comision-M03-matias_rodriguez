@@ -7,7 +7,6 @@
 ">
    </p>
 
-
 La tarea es desarrollar una plataforma web dedicada exclusivamente a las vivencias y relatos de viajes, donde los usuarios tengan la posibilidad de registrarse, iniciar sesión, crear publicaciones sobre viajes y participar activamente al agregar comentarios a las publicaciones de otros viajeros
 
 ## ⚙ Tecnologias
@@ -45,7 +44,4 @@ SECRET_KEY =
 
 ```
 
-[!WARNING]
-Nota: usuario y password son los asignados por defecto
-
-- dentro del directorio raiz ejecutamos `npm run dev`
+- dentro del directorio /backend ejecutamos `npm run dev`, el mismo procedimiento en el directorio /frontend
