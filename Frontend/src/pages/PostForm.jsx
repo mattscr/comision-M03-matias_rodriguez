@@ -46,7 +46,7 @@ const PostForm = () => {
   });
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-300">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <div
         className="
     flex flex-col

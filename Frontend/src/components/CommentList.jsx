@@ -41,9 +41,9 @@ const CommentList = () => {
           {isAuth ? (
             user.id == comment.autor._id ? (
               <>
-                <button>
+                {/* <button>
                   <i className="fas fa-pen text-slate-800"></i>
-                </button>
+                </button> */}
                 <button
                   onClick={() => {
                     //console.log(id, comment._id);
